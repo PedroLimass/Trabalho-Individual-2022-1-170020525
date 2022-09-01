@@ -3,7 +3,7 @@ version: "3.5"
 services:
   db:
     container_name: db_library
-    image: postgres    
+    image: postgres
     ports:
       - "5433:5433"
     environment:
@@ -20,11 +20,12 @@ services:
       context: ./library_back
     command: >
       sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
     volumes:
       - ./library_back:/code
     ports:
       - "8000:8000"
-    environment:      
+    environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_PORT=5432
@@ -32,7 +33,21 @@ services:
     depends_on:
       - db
     networks:
-      - library-net 
+      - library-net
+
+  frontend:
+    build: 
+      context: ./library_front
+    container_name: frontend_library
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"    
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    command: npm start
+    networks:
+       - library-net
 
 networks:
   library-net:
