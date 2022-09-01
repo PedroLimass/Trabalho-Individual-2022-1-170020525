@@ -14,6 +14,25 @@ services:
       - POSTGRES_HOST=db
     networks:
       - library-net
+  web:
+    container_name: backend_library
+    build:
+      context: ./library_back
+    command: >
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./library_back:/code
+    ports:
+      - "8000:8000"
+    environment:      
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+    networks:
+      - library-net 
 
 networks:
   library-net:
