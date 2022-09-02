@@ -48,6 +48,20 @@ services:
     command: npm start
     networks:
        - library-net
+       
+  nginx:
+    image: nginx    
+    container_name: nginx_library
+    depends_on:
+      - web
+      - db
+      - frontend
+    networks:
+      - library-net
+    ports:
+     - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
 networks:
   library-net:
