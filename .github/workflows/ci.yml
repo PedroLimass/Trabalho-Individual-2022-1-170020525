@@ -31,4 +31,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Rodando o Lint
-        run: docker-compose run web sh -c "pylint manage.py"
+        run: docker-compose run web sh -c "pylint manage.py --disable=C"
