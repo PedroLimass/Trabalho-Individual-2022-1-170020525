@@ -23,5 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Rodando os testes
+      - name: Rodando os Testes
         run: docker-compose run web sh -c "python manage.py migrate && python manage.py test"
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Rodando o Lint
+        run: docker-compose run web sh -c "pylint manage.py"
