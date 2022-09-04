@@ -25,4 +25,4 @@ jobs:
       - uses: actions/checkout@v3      
       - name: Rodando os testes
         run: docker-compose up --build -d
-        run: docker-compose run app sh -c "python manage.py tests"
+        run: docker-compose run web sh -c "python manage.py test"
