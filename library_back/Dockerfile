@@ -1,4 +1,4 @@
-FROM python:3.8.6
+FROM python:latest
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
