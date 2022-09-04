@@ -24,5 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3      
       - name: Rodando os testes
-        run: docker-compose up --build -d
-        run: docker-compose run web sh -c "python manage.py test"
+        run: | 
+          docker-compose up --build -d
+          docker-compose run web sh -c "python manage.py test"
+        
