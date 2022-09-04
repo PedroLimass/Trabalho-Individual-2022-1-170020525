@@ -35,17 +35,21 @@ jobs:
   cd:
     name: CD
     runs-on: ubuntu-latest
-    needs:
-      - lint
+    needs: 
+      - lint      
     steps:
-      - name: Login to Docker Hub
+      -
+        name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build and push FrontEnd
+      -
+        name: Build and push FrontEnd
         uses: docker/build-push-action@v2
         with:
-          context: ./library_front
+          context: .
+          file: ./library_front/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/library_front:latest
+    
