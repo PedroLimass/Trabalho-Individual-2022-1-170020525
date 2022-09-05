@@ -1,12 +1,15 @@
-FROM python:3
+FROM python:3.9
 
-ENV PYTHONDONTWRITEBYTECODE=1
-
-ENV PYTHONUNBUFFERED=1
+RUN mkdir /code
 
 WORKDIR /code
 
-COPY requirements.txt /code/requirements.txt
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
+ADD requirements.txt /code
+
+ADD . /code
+
+RUN apt-get update -y
+
+RUN apt-get install -y g++
+
+RUN pip install -r requirements.txt
