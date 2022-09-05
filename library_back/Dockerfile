@@ -4,9 +4,9 @@ RUN mkdir /code
 
 WORKDIR /code
 
-ADD requirements.txt /code
+COPY requirements.txt /code
 
-ADD . /code
+COPY . /code
 
 RUN apt-get update -y
 
