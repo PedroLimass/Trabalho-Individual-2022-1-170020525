@@ -63,6 +63,10 @@ jobs:
   cd-back:
     name: CD-Back
     runs-on: ubuntu-latest          
+    needs: 
+      - lint
+      - tests
+      - build     
     steps:
       -
         name: Checkout 
