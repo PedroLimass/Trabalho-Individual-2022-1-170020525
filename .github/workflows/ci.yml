@@ -35,8 +35,8 @@ jobs:
   cd-front:
     name: CD-Front
     runs-on: ubuntu-latest
-    needs: 
-      - lint      
+    # needs: 
+    #   - lint      
     steps:
       -
         name: Checkout 
@@ -61,8 +61,8 @@ jobs:
   cd-back:
     name: CD-Back
     runs-on: ubuntu-latest
-    needs: 
-      - lint      
+    # needs: 
+    #   - lint      
     steps:
       -
         name: Checkout 
@@ -82,6 +82,7 @@ jobs:
         with:
           context: .
           file: ./library_back/Dockerfile
+          library_back/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/library_back:latest
     
