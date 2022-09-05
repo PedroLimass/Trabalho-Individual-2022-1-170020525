@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /code
 
-COPY requirements.txt /code/requirements.txt
+COPY ./requirements.txt /code/requirements.txt
 RUN RUN python3 -m pip install -r /code/requirements.txt
 
 COPY . /code
