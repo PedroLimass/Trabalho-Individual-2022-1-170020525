@@ -81,8 +81,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./library_back/Dockerfile
-          library_back/Dockerfile
+          file: ./library_back/Dockerfile          
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/library_back:latest
     
