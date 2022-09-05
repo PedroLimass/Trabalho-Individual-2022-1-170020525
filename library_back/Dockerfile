@@ -1,11 +1,13 @@
-FROM python:3.8.13
+FROM python:latest
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR /code
+ENV PYTHONUNBUFFERED=1
 
-COPY requirements.txt ./
+RUN mkdir web
+WORKDIR /web
 
-RUN pip install -r requirements.txt
+COPY requirements.txt /web/requirements.txt
+RUN pip install -r /web/requirements.txt
 
-EXPOSE 8000
+COPY . /web
